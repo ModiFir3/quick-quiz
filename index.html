@@ -23,15 +23,14 @@
         </div>
     </header>
 
-    <!--Timer Section-->
-    <section class="container">
-        <div class="row">
-            <p>timer: 0:00</p>
-        </div>
-    </section>
-
     <!--Quiz Form-->
     <main class="container bg-info rounded">
+        <!--Timer Section-->
+        <section class="container">
+            <div class="row" id="timer">
+            </div>
+        </section>
+        
         <!--Quiz name-->
         <div class="row">
             <h1 class="col-12 d-flex justify-content-center m-3 p-3 text-warning">
@@ -51,9 +50,7 @@
         </div>
 
         <!--Multiple choice-->
-        <div class="row m-3 p-3">
-            <ul id="answer">
-            </ul>
+        <div class="row m-3 p-3" id="answer">
         </div>
     </main>
 </body>
