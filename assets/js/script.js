@@ -2,23 +2,23 @@
 let questions = [
     {
         title: 'Commonly used data types DO Not include:',
-        answers: ["string", "boolens", "alerts", "numbers",],
-        correntAnswer: 'alerts',
+        answers: ["string", "alerts", "boolens", "numbers"],
+        correctAnswer: 'alerts'
     },
     {
         title: 'The condition in an if / else statement is enclosed with ____.',
-        answers: ['quotes', 'curly brackets', 'parenthesis', 'square brackets',],
-        correntAnswer: 'parenthesis',
+        answers: ['quotes', 'curly brackets', 'parenthesis', 'square brackets'],
+        correctAnswer: 'parenthesis'
     },
     {
         title: 'Arrays in JavaScript can be used to store',
-        answers: ['numbers and strings', 'other arrays', 'boolens', 'all of the above',],
-        correntAnswer: 'all of the above',
+        answers: ['numbers and strings', 'other arrays', 'boolens', 'all of the above'],
+        correctAnswer: 'all of the above'
     },
     {
         title: 'String values must be enclosed within ____ when being assigned to variables.',
-        answers: ['commas', 'curly brackets', 'quotes', 'parenthesis',],
-        correntAnswer: 'quotes',
+        answers: ['commas', 'curly brackets', 'parenthesis', 'quotes'],
+        correctAnswer: 'quotes',
     },
 ];
 
@@ -27,9 +27,6 @@ var questionIndex = 0;
 
 var timeLeft = 60;
 var penalty = 10;
-
-var questionClear = "";
-var answerClear = "";
 
 //start Quiz
 $('#start').on('click', function () {
@@ -40,33 +37,56 @@ $('#start').on('click', function () {
 
 //generating questions
 function startQuiz() {
+    $('.answer-btn').
     //countdown timer
     $('#timer').html(timeLeft);
-    countdown = setInterval(function() {
+    countdown = setInterval(function () {
         --timeLeft;
         $('#timer').html(timeLeft);
         if (timeLeft === 0) {
             alert('Time is up!');
             clearInterval(countdown)
+            quizEnd()
         }
     }, 1000);
-    
-    //generating questions
-    function generateQuestion(questionIndex) {
-        $('#question').html(questionClear);
-        $('#answer').html(answerClear);
-        for (var i = 0; i < questions.length; i++) {
-            var userQuestion = question[questionIndex].title;
-            var userAnswer = questions[questionIndex].answers;
-        $('#question').append(userQuestion);
+
+    generateQuestion()
+};
+
+//generating questions
+function generateQuestion() {
+    console.log(questionIndex);
+    $('.answer-btn').off()
+    $('#question').text(questions[questionIndex].title);
+    for (var i = 0; i < questions[questionIndex].answers.length; i++) {
+        $('.answer-btn').eq(i).text(questions[questionIndex].answers[i]);
+        if (questions[questionIndex].correctAnswer == questions[questionIndex].answers[i]) {
+            $('.answer-btn').eq(i).one('click', function () {
+                questionIndex++;
+                if (questionIndex >= questions.length) {
+                    quizEnd();
+                } else {
+                    generateQuestion();
+                }
+            });
+        } else {
+            $('.answer-btn').eq(i).one('click', function () {
+                questionIndex++;
+                if (questionIndex >= questions.length) {
+                    quizEnd();
+                } else {
+                    generateQuestion();
+                }
+            });
         }
     }
-
 };
 
 function quizEnd() {
-
+    $('#question').remove()
+    $('#answer').remove()
 }
+
 
 
 
