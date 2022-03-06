@@ -1,5 +1,5 @@
 //array of questions and answer
-let questions = [
+const questions = [
     {
         title: 'Commonly used data types DO Not include:',
         answers: ["string", "alerts", "boolens", "numbers"],
@@ -58,6 +58,7 @@ function generateQuestion() {
     //score
     $('#score').text(score);
 
+    console.log(questionIndex);
     $('.answer-btn').off();
     $('#question').text(questions[questionIndex].title);
     for (var i = 0; i < questions[questionIndex].answers.length; i++) {
