@@ -21,61 +21,69 @@ let questions = [
         correctAnswer: 'quotes',
     },
 ];
-
+//score variables
 var score = 0;
 var questionIndex = 0;
-
+//time variables
 var timeLeft = 60;
 var penalty = 10;
 
+//hide answer buttons
+$('.answer-btn').hide()
+
 //start Quiz
-$('#start').on('click', function () {
+$('#start').click(function () {
     $('#start').remove();
-    startQuiz()
+
+    //show answer buttons
+    $('.answer-btn').show();
+
+    generateQuestion()
 });
 
-
 //generating questions
-function startQuiz() {
-    $('.answer-btn').
-    //countdown timer
+function generateQuestion() {
+    //countdown
     $('#timer').html(timeLeft);
     countdown = setInterval(function () {
         --timeLeft;
         $('#timer').html(timeLeft);
-        if (timeLeft === 0) {
-            alert('Time is up!');
-            clearInterval(countdown)
-            quizEnd()
+        if (timeLeft <= 0 || questionIndex >= questions.length) {
+            clearInterval(countdown);
+            $('#timer').remove();
+            quizEnd();
         }
     }, 1000);
 
-    generateQuestion()
-};
+    //score
+    $('#score').text(score);
 
-//generating questions
-function generateQuestion() {
-    console.log(questionIndex);
-    $('.answer-btn').off()
+    $('.answer-btn').off();
     $('#question').text(questions[questionIndex].title);
     for (var i = 0; i < questions[questionIndex].answers.length; i++) {
         $('.answer-btn').eq(i).text(questions[questionIndex].answers[i]);
         if (questions[questionIndex].correctAnswer == questions[questionIndex].answers[i]) {
+            //right answer
             $('.answer-btn').eq(i).one('click', function () {
                 questionIndex++;
                 if (questionIndex >= questions.length) {
                     quizEnd();
                 } else {
+                    score++;
                     generateQuestion();
+                    console.log("chose the right answer");
                 }
             });
         } else {
+            //wrong answer
             $('.answer-btn').eq(i).one('click', function () {
                 questionIndex++;
                 if (questionIndex >= questions.length) {
                     quizEnd();
                 } else {
                     generateQuestion();
+                    timeLeft = timeLeft - penalty;
+                    console.log("chose the wrong answer");
                 }
             });
         }
