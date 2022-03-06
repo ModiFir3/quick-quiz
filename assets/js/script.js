@@ -29,7 +29,9 @@ var timeLeft = 60;
 var penalty = 10;
 
 //hide answer buttons
-$('.answer-btn').hide()
+$('.answer-btn').hide();
+//hide input for highscore
+$('#highscore').hide();
 
 //start Quiz
 $('#start').click(function () {
@@ -90,12 +92,17 @@ function generateQuestion() {
         }
     }
 };
-
+//end
 function quizEnd() {
     $('#question').remove()
     $('#answer').remove()
-}
-
-
-
+    $('#highscore').show()
+    
+    //local storage
+    $('#submitname').on('click', function() {
+        var username = $('#username').val();
+        localStorage.setItem(score, username);
+    });
+    
+};
 
