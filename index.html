@@ -28,14 +28,14 @@
         <!--Timer and score Section-->
         <section class="container">
             <div class="row">
-                <div class="col-6" id="timer"></div>
-                <div class="col-6 d-flex justify-content-end" id="score"></div>
+                <div class="col-6 fw-bold" id="timer"></div>
+                <div class="col-6 d-flex justify-content-end fw-bold" id="score"></div>
             </div>
         </section>
 
         <!--Quiz name-->
         <section class="row">
-            <h1 class="col-12 d-flex justify-content-center m-3 p-3 text-warning">
+            <h1 class="col-12 d-flex justify-content-center m-3 p-3 text-warning fw-bold">
                 JavaScript fundamentals
             </h1>
         </section>
@@ -47,26 +47,41 @@
 
         <!--Questions-->
         <section class="row">
-            <div class="col-12 d-flex justify-content-center" id="question">
+            <div class="col-12 d-flex justify-content-center fw-bold" id="question">
             </div>
         </section>
 
         <!--Multiple choice-->
         <section class="row m-3 p-3" id="answer">
-            <button class='answer-btn btn-warning rounded m-1' id="btn-0"></button>
-            <button class='answer-btn btn-warning rounded m-1' id="btn-1"></button>
-            <button class='answer-btn btn-warning rounded m-1' id="btn-2"></button>
-            <button class='answer-btn btn-warning rounded m-1' id="btn-3"></button>
+            <button class='answer-btn btn-warning rounded m-1' ></button>
+            <button class='answer-btn btn-warning rounded m-1' ></button>
+            <button class='answer-btn btn-warning rounded m-1' ></button>
+            <button class='answer-btn btn-warning rounded m-1' ></button>
         </section>
 
-        <!--highscore input-->
+        <!--highscore-->
         <section class="container" id="highscore">
+            <!--highscore input-->
             <div class="row d-flex justtify-content-center">
-                <input type="text" class="col-8 mb-5" id="username" />
-                <input type="submit" class="col-4 mb-5 btn-warning" id="submitname" />
+                <input type="text" class="col-8 mb-5" placeholder="Username" id="username" />
+                <input type="submit" class="col-4 mb-5 btn-warning" id="submitbtn" />
             </div>
-            <div>
-                
+            <!--highscore output-->
+            <div class="row">
+                <div class="col-6">
+                    <div class="postname" ></div>
+                    <div class="postname" ></div>
+                    <div class="postname" ></div>
+                    <div class="postname" ></div>
+                    <div class="postname" ></div>
+                </div>
+                <div class="col-6">
+                    <div class="postscore" ></div>
+                    <div class="postscore" ></div>
+                    <div class="postscore" ></div>
+                    <div class="postscore" ></div>
+                    <div class="postscore" ></div>
+                </div>
             </div>
         </section>
     </main>

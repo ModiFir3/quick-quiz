@@ -1,11 +1,13 @@
 //array of questions and answer
 const questions = [
     {
+        //0
         title: 'Commonly used data types DO Not include:',
         answers: ["string", "alerts", "boolens", "numbers"],
         correctAnswer: 'alerts'
     },
     {
+        //1
         title: 'The condition in an if / else statement is enclosed with ____.',
         answers: ['quotes', 'curly brackets', 'parenthesis', 'square brackets'],
         correctAnswer: 'parenthesis'
@@ -22,11 +24,11 @@ const questions = [
     },
 ];
 //score variables
-var score = 0;
+var currentScore = 0;
 var questionIndex = 0;
 //time variables
 var timeLeft = 60;
-var penalty = 10;
+var penalty = 15;
 
 //hide answer buttons
 $('.answer-btn').hide();
@@ -58,9 +60,8 @@ function generateQuestion() {
     }, 1000);
 
     //score
-    $('#score').text(score);
+    $('#score').text(currentScore);
 
-    console.log(questionIndex);
     $('.answer-btn').off();
     $('#question').text(questions[questionIndex].title);
     for (var i = 0; i < questions[questionIndex].answers.length; i++) {
@@ -72,9 +73,8 @@ function generateQuestion() {
                 if (questionIndex >= questions.length) {
                     quizEnd();
                 } else {
-                    score++;
+                    currentScore++;
                     generateQuestion();
-                    console.log("chose the right answer");
                 }
             });
         } else {
@@ -84,9 +84,8 @@ function generateQuestion() {
                 if (questionIndex >= questions.length) {
                     quizEnd();
                 } else {
-                    generateQuestion();
                     timeLeft = timeLeft - penalty;
-                    console.log("chose the wrong answer");
+                    generateQuestion();
                 }
             });
         }
@@ -94,15 +93,22 @@ function generateQuestion() {
 };
 //end
 function quizEnd() {
-    $('#question').remove()
-    $('#answer').remove()
-    $('#highscore').show()
-    
-    //local storage
-    $('#submitname').on('click', function() {
-        var username = $('#username').val();
-        localStorage.setItem(score, username);
+    $('#question').remove();
+    $('#answer').remove();
+    $('#highscore').show();
+    $('#submitbtn').off();
+    //submit
+    $('#submitbtn').on('click', function () {
+        var userInput = $('#username').val();
+        var results = [currentScore, userInput]
+        console.log(results)
+        if (!userInput) {
+            alert('Input a Username!')
+        } else {
+            localStorage.setItem('highscore', results);
+            $('#submitbtn').hide()
+            $('#username').hide()
+        }
     });
-    
 };
 
