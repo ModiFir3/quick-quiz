@@ -100,12 +100,11 @@ function quizEnd() {
     //submit
     $('#submitbtn').on('click', function () {
         var userInput = $('#username').val();
-        var results = [currentScore, userInput]
         console.log(results)
         if (!userInput) {
             alert('Input a Username!')
         } else {
-            localStorage.setItem('highscore', results);
+            var results = localStorage.setItem(userInput, currentScore);
             $('#submitbtn').hide()
             $('#username').hide()
         }
